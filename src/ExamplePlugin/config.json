@@ -1,0 +1,7 @@
+﻿{
+  "name": "ExamplePlugin",
+  "authorIds": ["WQpVJbZHHBZOPpanyE4mOog8lKt2"],
+  "description": "This is a basic example plugin, showing a simple modal and two toasts.",
+  "version": "0.0.1",
+  "requires_EXAMPLE": ["ExampleDependencyPlugin"]
+}

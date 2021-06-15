@@ -1,0 +1,34 @@
+﻿// It's good practice to have a top-most class name for your styles
+.EP_ExampleModal {
+  // Cirlos has a set of variables you can use that will follow your color settings
+  // For a list of all colors, go to Cirlos, press Ctrl+Shift+I, select the <html> element, and view the :root styles on the right-hand side
+  background-color: var(--tertiary-bg);
+  
+  // If you wish for your addon to fit the default style of Cirlos, set your elements' border radius's to 5px
+  border-radius: 5px;
+  
+  width: 800px;
+  height: 300px;
+  
+  position: relative;
+  text-align: center;
+  
+  .SmileEmoji {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    
+    opacity: 0.1;
+    font-size: 15rem;
+  }
+  
+  .Text {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    font-size: 1.5rem;
+    font-weight: bolder;
+  }
+}
