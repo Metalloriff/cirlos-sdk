@@ -40,6 +40,7 @@ module.exports = env => {
             "@cirlos-sdk/api/client": ["global PluginApi", "Client"],
             "@cirlos-sdk/classes": ["global PluginApi", "Classes"],
             "@cirlos-sdk/components": "assign Object.keys(window.PluginApi.Components).reduce((items, item, _, target)  => (items[item] = window.PluginApi.Components[item].default, items), {})",
+            "@cirlos-sdk/components/settings-fields": ["global PluginApi", "Components", "SettingsFields"],
             "@cirlos-sdk/components/app-main": ["global PluginApi", "Components", "AppMain"],
             "@cirlos-sdk/components/messages": ["global PluginApi", "Components", "MessageComponent"],
             "@cirlos-sdk/components/chat-auto-complete": ["global PluginApi", "Components", "ChatAutoComplete"],

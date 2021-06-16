@@ -1011,7 +1011,13 @@ declare module "@cirlos-sdk/font-awesome-icons" {
 
 declare module "@cirlos-sdk/plugin" {
     export default class Plugin {
-        static config: object;
+        static instance: any;
+        
+        config: object;
+        defaultSettings: object;
+        settings: object;
+        
+        renderSettingsMenu(): any;
         start(): void;
         stop(): void;
     }
@@ -1049,14 +1055,11 @@ declare module "@cirlos-sdk/api/banner-notifications" {
 
 declare module "@cirlos-sdk/api/toasts" {
     type ToastType = "" | "Success" | "Warning" | "Failure";
-    type AdditionalToastOptions = {
-        callback: Function
-    };
 
     export default class Toasts {
         static instance: "React.ReactElement";
         static ref: { current: Element | null };
-        static showToast: (children: any, type?: ToastType, life?: number, additionalOptions?: AdditionalToastOptions) => void;
+        static showToast: (children: any, type?: ToastType, life?: number, additionalOptions?: { callback?: Function, color?: string }) => void;
     }
 
     export const Toast: "React.ReactElement";
@@ -1110,7 +1113,7 @@ declare module "@cirlos-sdk/classes" {
         seconds: number;
 
         toDate: () => Date;
-        toJSON: () => JSON;
+        toJSON: () => object;
         toString: () => string;
     };
 
@@ -1280,6 +1283,13 @@ declare module "@cirlos-sdk/classes" {
         Away: 2,
         DoNotDisturb: 3
     };
+    
+    type StatusString = {
+        0: "offline",
+        1: "online",
+        2: "away",
+        3: "do not disturb"
+    };
 
     type RelationshipStatus = {
         Strangers: 0,
@@ -1395,9 +1405,10 @@ declare module "@cirlos-sdk/classes" {
     }
 
     export class TenorClient {
-        executeRequest: (cmd: string, props?: object) => Promise<JSON>;
-        getTrending: (options?: object) => Promise<JSON>;
-        search: (query: string, options?: object) => Promise<JSON>;
+        static executeRequest: (cmd: string, props?: object) => Promise<object>;
+        static getTrending: (options?: object) => Promise<object>;
+        static search: (query: string, options?: object) => Promise<object>;
+        static random: (query?: string, options?: object) => Promise<object>;
     }
 
     export class Timer {
@@ -1646,4 +1657,15 @@ declare module "@cirlos-sdk/components" {
     export const ToggleBackgroundFloater: React.Component;
     export const WindowTitleBar: React.Component;
     export const StartupPage: React.Component;
+}
+
+// SETTINGS FIELDS \\
+
+declare module "@cirlos-sdk/components/settings-fields" {
+    import React from "react";
+    
+    export function ColorField({ title, value, defaultValue, onChange }: { title: string, value: string, defaultValue: string, onChange: (color: string) => void }): React.Component;
+    export function BoolField({ title, value, onChange }: { title: string, value: boolean, onChange: (value: boolean) => void }): React.Component;
+    export function SliderField({ title, value, onChange, minValue, maxValue, step }:
+    { title: string, value: number, onChange: (value: number) => void, minValue?: number, maxValue?: number, step?: number }): React.Component;
 }

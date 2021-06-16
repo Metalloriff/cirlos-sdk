@@ -27,7 +27,7 @@ export default class ExamplePlugin extends Plugin {
         // Also an example of inline JSX working
         openModal(<ExampleModal/>);
     }
-    
+
     stop() {
         // Display a red-tinted toast to let us know our plugin has successfully stopped
         Toasts.showToast("ExamplePlugin stopped", "Failure");
