@@ -1116,6 +1116,23 @@ declare module "@cirlos-sdk/classes" {
         toJSON: () => object;
         toString: () => string;
     };
+    
+    export class ChatCommands {
+        static list: any;
+        static regex: object;
+        
+        static register(base: string, options: {
+            description?: string;
+            arguments?: {
+                name: string;
+                note: string;
+                fallback?: string;
+            }[],
+            callback: (...any) => void;
+        }): void;
+        
+        static unregister(base: string): void;
+    }
 
     export class Circle {
         id: string;
